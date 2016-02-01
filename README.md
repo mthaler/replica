@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/mthaler/replica.png)](https://travis-ci.org/mthaler/replica)
+[![codecov.io](http://codecov.io/github/mthaler/replica/coverage.svg?branch=master)](http://codecov.io/github/mthaler/replica?branch=master)
 
 _replica_ is tiny library to create copies of case classes with updated values using reflection.
 
