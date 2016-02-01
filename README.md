@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mthaler/replica.png)](https://travis-ci.org/mthaler/replica)
+
 _replica_ is tiny library to create copies of case classes with updated values using reflection.
 
 The main use case for this library is a flat class hierachy of case classes extending an abstract base class that defines some common fields.
