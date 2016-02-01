@@ -2,6 +2,14 @@ package com.mthaler.replica
 
 object Replicator {
 
+  /**
+    * Copies a case class replacing values with updated values
+    *
+    * @param t case class
+    * @param updated map containing updated values
+    * @tparam T
+    * @return copy of case class with updated values
+    */
   def copy[T <: Product](t: T, updated: Map[String, Any] = Map.empty[String, Any]): T = {
     val values = t.productIterator.toList.map(_.asInstanceOf[AnyRef])
     val clazz = t.getClass
