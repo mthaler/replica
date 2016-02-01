@@ -3,7 +3,7 @@ package com.mthaler.replica
 import org.scalatest.FunSuite
 
 object ReplicatorTest {
-    abstract class HasName extends Product {
+  abstract class HasName extends Product {
 
     def name: String
   }
