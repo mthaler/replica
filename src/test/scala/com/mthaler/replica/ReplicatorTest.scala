@@ -31,8 +31,9 @@ class ReplicatorTest extends FunSuite {
     implicit class RichHasName[T <: HasName](value: T) {
       def withName(name: String) = Replicator.copy(value, Map("name" -> name))
     }
-    val p = Person("Richard Feynman", 42).withName("Paul Dirac")
-    println(p)
+    assertResult(Person("Paul Dirac", 42)) {
+      Person("Richard Feynman", 42).withName("Paul Dirac")
+    }
   }
 
   test("complexClass") {
@@ -47,7 +48,9 @@ class ReplicatorTest extends FunSuite {
       def withBoolean(b: Boolean) = Replicator.copy(value, Map("enabled" -> b))
     }
     val test = Test2(true, Time(0))
-    println(test.withBoolean(false))
+    assertResult(Test2(false, Time(0))) {
+      test.withBoolean(false)
+    }
   }
 
   test("unwrap") {

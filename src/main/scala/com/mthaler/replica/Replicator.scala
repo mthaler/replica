@@ -16,8 +16,10 @@ object Replicator {
     val clazz = t.getClass
     // create list of fields of the class
     val fields = clazz.getDeclaredFields.toList
+    // unwrap value classes
+    val unwrapped = for ((field, value) <- fields.zip(values)) yield if (field.getType != value.getClass) unwrap(value).asInstanceOf[AnyRef] else value
     val fieldNames = fields.map(_.getName)
-    val newValues = for ((field, value) <- fieldNames zip values) yield if (updated.contains(field)) updated(field).asInstanceOf[AnyRef] else value
+    val newValues = for ((field, value) <- fieldNames zip unwrapped) yield if (updated.contains(field)) updated(field).asInstanceOf[AnyRef] else value
     val result = clazz.getConstructors.head.newInstance(newValues: _*).asInstanceOf[T]
     result
   }
@@ -25,9 +27,12 @@ object Replicator {
   private[replica] def unwrap(value: Any): Any = {
     val clazz = value.getClass
     val fields = clazz.getDeclaredFields.toList
-    if (fields.size != 1) throw new IllegalArgumentException("Not a value class, value classes must have exactly one field!")
-    val f = fields.head
-    f.setAccessible(true)
-    f.get(value)
+    if (fields.size == 1) {
+      val f = fields.head
+      f.setAccessible(true)
+      f.get(value)
+    } else {
+      value
+    }
   }
 }
