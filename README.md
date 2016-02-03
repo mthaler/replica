@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/mthaler/replica.png)](https://travis-ci.org/mthaler/replica)
 [![codecov.io](http://codecov.io/github/mthaler/replica/coverage.svg?branch=master)](http://codecov.io/github/mthaler/replica?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.mthaler/replica_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.mthaler/replica_2.11)
 
 _replica_ is tiny library to create copies of case classes with updated values using reflection.
 
@@ -9,8 +10,13 @@ to update values defined in a base class without writing boilerplate code for ea
 
 ## Installation
 
-replica will soon be available from the Maven Central repository.
+replica is available from the Maven Central repository. The latest release is 0.0.2 and is built against Scala 2.11.7.
 
+If you use SBT you can include replica in your project with
+
+```scala
+libraryDependencies += "com.mthaler" %% "replica" % "0.0.2"
+```
 ## Usage
 
 ```scala
