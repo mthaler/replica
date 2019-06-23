@@ -2,10 +2,10 @@ import ReleaseTransformations._
 
 lazy val replicaSettings = Seq(
   organization := "com.mthaler",
-  scalaVersion := "2.11.8",
-  crossScalaVersions := Seq("2.11.8", "2.12.1"),
+  scalaVersion := "2.12.8",
+  crossScalaVersions := Seq("2.11.8", "2.12.8"),
   libraryDependencies ++= Seq(
-    "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+    "org.scalatest" %% "scalatest" % "3.0.8" % "test"
   ),
   scalacOptions ++= Seq(
     "-deprecation",
@@ -17,17 +17,12 @@ lazy val replicaSettings = Seq(
 
   // release stuff
   // credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
+  releaseCrossBuild := true,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishMavenStyle := true,
   publishArtifact in Test := false,
   pomIncludeRepository := Function.const(false),
-  publishTo <<= version { v =>
-    val nexus = "https://oss.sonatype.org/"
-    if (v.trim.endsWith("SNAPSHOT"))
-      Some("Snapshots" at nexus + "content/repositories/snapshots")
-    else
-      Some("Releases" at nexus + "service/local/staging/deploy/maven2")
-  },
+  publishTo := sonatypePublishTo.value,
   pomExtra :=
     <scm>
       <url>git@github.com:mthaler/replica.git</url>
