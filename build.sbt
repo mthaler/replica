@@ -2,7 +2,7 @@ import ReleaseTransformations._
 
 lazy val replicaSettings = Seq(
   organization := "com.mthaler",
-  scalaVersion := "2.12.8",
+  scalaVersion := "2.11.8",
   crossScalaVersions := Seq("2.11.8", "2.12.8"),
   libraryDependencies ++= Seq(
     "org.scalatest" %% "scalatest" % "3.0.8" % "test"
