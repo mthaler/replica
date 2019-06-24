@@ -16,7 +16,7 @@ lazy val replicaSettings = Seq(
   homepage := Some(url("http://github.com/mthaler/replica")),
 
   // release stuff
-  // credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
+  credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
   releaseCrossBuild := true,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishMavenStyle := true,
